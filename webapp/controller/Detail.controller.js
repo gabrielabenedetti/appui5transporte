@@ -9,7 +9,7 @@ sap.ui.define([
 	// shortcut for sap.m.URLHelper
 	var URLHelper = mobileLibrary.URLHelper;
 
-	return BaseController.extend("transporte.apptransporte.controller.Detail", {
+	return BaseController.extend("apptransporte.controller.Detail", {
 
 		formatter: formatter,
 

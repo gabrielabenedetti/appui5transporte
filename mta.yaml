@@ -1,0 +1,104 @@
+_schema-version: "3.2"
+ID: apptransporte
+description: A Fiori application.
+version: 1.0.0
+modules:
+- name: apptransporte-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: apptransporte-dest-srv
+    parameters:
+      content-target: true
+  - name: apptransporte-repo-host
+    parameters:
+      service-key:
+        name: apptransporte-repo-host-key
+  - name: apptransporte-xsuaa
+    parameters:
+      service-key:
+        name: apptransporte-xsuaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: apptransporte_repo_host
+          ServiceInstanceName: apptransporte-html5-srv
+          ServiceKeyName: apptransporte-repo-host-key
+          sap.cloud.service: apptransporte
+        - Authentication: OAuth2UserTokenExchange
+          Name: apptransporte_xsuaa
+          ServiceInstanceName: apptransporte-xsuaa-srv
+          ServiceKeyName: apptransporte-xsuaa-key
+          sap.cloud.service: apptransporte
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+    
+- name: apptransporte-ui-deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: apptransporte-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - apptransporte.zip
+      name: apptransporte-fiori
+      target-path: resources/
+
+- name: apptransporte-fiori
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+
+
+
+
+
+resources:
+- name: apptransporte-dest-srv
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: apptransporte-dest-srv
+    service-plan: lite
+
+- name: apptransporte-xsuaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: apptransporte-xsuaa-srv
+    service-plan: application
+- name: apptransporte-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: apptransporte-html5-srv
+    service-plan: app-host
+    config:
+      sizeLimit: 5
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

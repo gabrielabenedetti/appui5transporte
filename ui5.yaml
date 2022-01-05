@@ -1,6 +1,6 @@
 specVersion: "2.5"
 metadata:
-  name: transporte.apptransporte
+  name: apptransporte
 type: application
 server:
   customMiddleware:
@@ -27,4 +27,4 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: transporte.apptransporte
+        component: apptransporte

@@ -1,6 +1,6 @@
 specVersion: "2.5"
 metadata:
-  name: transporte.apptransporte
+  name: apptransporte
 type: application
 framework:
   name: SAPUI5
@@ -34,4 +34,4 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: transporte.apptransporte
+        component: apptransporte

@@ -12,7 +12,7 @@ sap.ui.define([
 	"use strict";
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "transporte.apptransporte.view.",
+		viewNamespace: "apptransporte.view.",
 		autoWait: true
 	});
 });

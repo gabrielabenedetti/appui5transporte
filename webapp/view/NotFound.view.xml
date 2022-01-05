@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="transporte.apptransporte.controller.NotFound"
+	controllerName="apptransporte.controller.NotFound"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 

@@ -40,7 +40,7 @@ sap.ui.define([
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
 									"title": "MOV.C Transporte",
-									"targetURL": "#transporteapptransporte-display"
+									"targetURL": "#apptransporte-display"
 								}
 							}]
 						}]
@@ -51,8 +51,8 @@ sap.ui.define([
 				"adapter": {
 					"config": {
 						"inbounds": {
-							"transporteapptransporte-display": {
-								"semanticObject": "transporteapptransporte",
+							"apptransporte-display": {
+								"semanticObject": "apptransporte",
 								"action": "display",
 								"description": "A Fiori application.",
 								"title": "MOV.C Transporte",
@@ -61,7 +61,7 @@ sap.ui.define([
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=transporte.apptransporte",
+									"additionalInformation": "SAPUI5.Component=apptransporte",
 									"url": sap.ui.require.toUrl("transporte/apptransporte")
 								}
 							}

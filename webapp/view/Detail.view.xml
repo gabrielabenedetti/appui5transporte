@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="transporte.apptransporte.controller.Detail"
+	controllerName="apptransporte.controller.Detail"
 	xmlns="sap.m"
     xmlns:c="sap.suite.ui.commons"
 	xmlns:semantic="sap.f.semantic"
