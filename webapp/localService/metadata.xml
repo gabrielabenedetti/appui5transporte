@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZTRANSPORT_ASS_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZTRANSPORTDETType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TRANSPORTID"/>
+                    <PropertyRef Name="STATUSID"/>
+                </Key>
+                <Property Name="TRANSPORTID" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Document Number"/>
+                <Property Name="STATUSID" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="3-Byte field"/>
+                <Property Name="STATUS" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Field of length 16"/>
+                <Property Name="DATASTATUS" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date"/>
+            </EntityType>
+            <EntityType Name="ZTRANSPORT_ASSType" sap:label="Tras" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="transportid"/>
+                </Key>
+                <Property Name="transportid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Document Number" sap:quickinfo="Accounting Document Number"/>
+                <Property Name="datatransport" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date"/>
+                <Property Name="status" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Field of length 16" sap:heading=""/>
+                <Property Name="destcity" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Field of length 16" sap:heading=""/>
+                <Property Name="deststate" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Component of the Version Number" sap:heading=""/>
+                <Property Name="value" Type="Edm.Decimal" Precision="24" Scale="3" sap:label="Amount" sap:quickinfo="Amount in document currency"/>
+                <NavigationProperty Name="to_detalhe" Relationship="ZTRANSPORT_ASS_CDS.assoc_ABA4ACC7C33348E5D350D08515DA39D0" FromRole="FromRole_assoc_ABA4ACC7C33348E5D350D08515DA39D0" ToRole="ToRole_assoc_ABA4ACC7C33348E5D350D08515DA39D0"/>
+            </EntityType>
+            <Association Name="assoc_ABA4ACC7C33348E5D350D08515DA39D0" sap:content-version="1">
+                <End Type="ZTRANSPORT_ASS_CDS.ZTRANSPORT_ASSType" Multiplicity="1" Role="FromRole_assoc_ABA4ACC7C33348E5D350D08515DA39D0"/>
+                <End Type="ZTRANSPORT_ASS_CDS.ZTRANSPORTDETType" Multiplicity="*" Role="ToRole_assoc_ABA4ACC7C33348E5D350D08515DA39D0"/>
+            </Association>
+            <EntityContainer Name="ZTRANSPORT_ASS_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZTRANSPORTDET" EntityType="ZTRANSPORT_ASS_CDS.ZTRANSPORTDETType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZTRANSPORT_ASS" EntityType="ZTRANSPORT_ASS_CDS.ZTRANSPORT_ASSType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_ABA4ACC7C33348E5D350D08515DA39D0" Association="ZTRANSPORT_ASS_CDS.assoc_ABA4ACC7C33348E5D350D08515DA39D0" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZTRANSPORT_ASS" Role="FromRole_assoc_ABA4ACC7C33348E5D350D08515DA39D0"/>
+                    <End EntitySet="ZTRANSPORTDET" Role="ToRole_assoc_ABA4ACC7C33348E5D350D08515DA39D0"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZTRANSPORT_ASS_CDS.ZTRANSPORT_ASS_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://saps4happ.rise.external:50000/sap/opu/odata/sap/ZTRANSPORT_ASS_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://saps4happ.rise.external:50000/sap/opu/odata/sap/ZTRANSPORT_ASS_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

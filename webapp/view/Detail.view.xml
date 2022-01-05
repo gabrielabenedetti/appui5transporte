@@ -1,0 +1,108 @@
+<mvc:View
+	controllerName="transporte.apptransporte.controller.Detail"
+	xmlns="sap.m"
+    xmlns:c="sap.suite.ui.commons"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc">
+
+	<semantic:SemanticPage
+		id="detailPage"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+		<semantic:titleHeading>
+			<Title
+				text="{i18n>transportTitle} {transportid}"
+				level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<ObjectAttribute title="{i18n>priceTitle}"/>
+			<ObjectNumber
+				number="{
+					path: 'value',
+					formatter: '.formatter.numberUnit'
+				}" />
+             <ObjectAttribute title="{i18n>destCityTitle}"/>
+             <Text text="{destcity}"/>                
+		</semantic:headerContent>
+		<semantic:content>
+
+			<Table
+				id="lineItemsList"
+				width="auto"
+				items="{to_detalhe}"
+				updateFinished=".onListUpdateFinished"
+				noDataText="{i18n>detailLineItemTableNoDataText}"
+				busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+				<headerToolbar>
+					<Toolbar>
+						<Title
+							id="lineItemsTitle"
+							text="{i18n>lineItemListTitle}"
+							titleStyle="H3"
+							level="H3"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+                    <Column>
+                        <Text text=""/>
+                    </Column>
+					<Column>
+						<Text text="{i18n>statusText}"/>
+					</Column>
+					<Column
+						minScreenWidth="Tablet"
+						demandPopin="true"
+						hAlign="End">
+						<Text text="{i18n>dataText}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+                            <ObjectStatus state="{= ${STATUS} === 'LOADED' ? 'Error' : ${STATUS} === 'IN ROUTE' ? 'Warning' : 'Success'}" icon="{= ${STATUS} === 'IN PREPARATION' ? 'sap-icon://cart-approval' : 'sap-icon://shipping-status'}"/>
+							<!--<ObjectIdentifier text="{transportid}"></ObjectIdentifier>-->
+                            <Text text="{STATUS}"/>
+                            <DatePicker id="datastatus"
+                            value="{
+                                path:'DATASTATUS', 
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    UTC: true
+                                }
+                            }"
+                            editable="false">
+                        </DatePicker> 
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		<!--Semantic ShareMenu Buttons-->
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press=".onSendEmailPress"/>
+		</semantic:sendEmailAction>
+
+		<semantic:closeAction>
+			<semantic:CloseAction
+					id="closeColumn"
+					press=".onCloseDetailPress"/>
+		</semantic:closeAction>
+
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction
+					id="enterFullScreen"
+					visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+					press=".toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction
+					id="exitFullScreen"
+					visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+					press=".toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+
+	</semantic:SemanticPage>
+
+</mvc:View>
